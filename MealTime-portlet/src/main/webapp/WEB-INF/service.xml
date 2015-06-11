@@ -1,0 +1,69 @@
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+
+<service-builder package-path="com.smile.plugins">
+	<author>guillaume Lenoir</author>
+	<namespace>MealTime</namespace>
+	
+	<entity name="Restaurant" uuid="true" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="restaurantId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+		
+		<!-- Workflow field -->
+		<column name="status" type="int" />
+		<column name="statusByUserId" type="long" />
+		<column name="statusByUserName" type="String" />
+		<column name="statusDate" type="Date" />
+
+		<!-- Other fields -->
+		
+		<column name="emailAddress" type="String" />
+		<column name="name" type="String" localized="true" />
+		<column name="countryId" type="long" />
+		<column name="regionId" type="long" />
+		
+		<column name="phoneNumber" type="String"></column>
+		<column name="street1" type="String" />
+		<column name="street2" type="String" />
+		<column name="zip" type="String" />
+		<column name="city" type="String" />
+		
+		<column name="logoId" type="long" />
+		<column name="logoDescription" type="String" localized="true" />
+		<column name="description" type="String" localized="true" />
+		
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="createDate" />
+		</order>
+
+		<!-- Finder methods -->
+		
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId" />
+		</finder>
+
+		<!-- References -->
+		<reference package-path="com.liferay.portal" entity="Group" />
+		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
+		<reference package-path="com.liferay.portlet.asset" entity="AssetTag" />
+		<reference package-path="com.liferay.portal" entity="WorkflowInstanceLink" />
+		<reference package-path="com.liferay.portlet.messageboards" entity="MBMessage" />
+		
+	</entity>
+	
+</service-builder>
